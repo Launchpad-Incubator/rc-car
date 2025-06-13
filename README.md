@@ -73,40 +73,44 @@ python control_rc_car.py
 ```
 
 You can now control the car using:
-	•	W = Forward
-	•	S = Stop
-	•	A/D = Left/Right steering
+
+    W = Forward
+    S = Stop
+    A/D = Left/Right steering
 
 ---
 
 🚙 Multi-Car Setup
 
 You can run multiple RC cars simultaneously on the same network by:
-	1.	Giving each car a unique hostname in its config.json (e.g., rc1, rc2, rc3, …)
-	2.	Updating your control script to point to different cars via hostname (rc2.local, etc.)
+   1.  Giving each car a unique hostname in its config.json (e.g., rc1, rc2, rc3, …)
+   2.  Updating your control script to point to different cars via hostname (rc2.local, etc.)
 
 ---
 
 🧪 Testing
-	•	Press W while connected to verify motor spin
-	•	Watch onboard LED:
-	•	Fast blink while connecting to Wi-Fi
-	•	Solid once connected
-	•	Use ping `rc1.local` to test mDNS resolution
+
+    •   Press W while connected to verify motor spin
+    •	Watch onboard LED:
+    •	Fast blink while connecting to Wi-Fi
+    •	Solid once connected
+    •	Use ping `rc1.local` to test mDNS resolution
 
 ---
 
 📋 Requirements
-	•	Raspberry Pi Pico W
-	•	GoolRC ESC + Brushless Motor
-	•	Servo motor (3-wire)
-	•	URGENEX 7.4V 2000mAh battery
-	•	Python 3.9+ on control host
+
+    •   Raspberry Pi Pico W
+    •   GoolRC ESC + Brushless Motor
+    •	Servo motor (3-wire)
+    •	URGENEX 7.4V 2000mAh battery
+    •	Python 3.9+ on control host
 
 ---
 
 🤝 Contributing
-	1.	Fork the repo
-	2.	Create a feature branch (git checkout -b feature/my-feature)
-	3.	Commit changes and push
-	4.	Open a pull request
+
+    1.	Fork the repo
+    2.	Create a feature branch (git checkout -b feature/my-feature)
+    3.	Commit changes and push
+    4.	Open a pull request
