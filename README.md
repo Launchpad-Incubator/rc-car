@@ -46,6 +46,7 @@ Example `config.json` (on the Pico):
   "esc_pin": 16,
   "servo_pin": 17
 }
+```
 
 
 Example `networkinfo.json` (on the Pico and the computer):
@@ -54,16 +55,19 @@ Example `networkinfo.json` (on the Pico and the computer):
   "SSID": "YourWiFiNetwork",
   "PASSWORD": "YourWiFiPassword"
 }
+```
 
 ⌨️ 3. Running the Host Control Script
 
 Install dependencies:
 ```bash
 pip install -r requirements.txt
+```
 
 Run the control script:
 ```bash
 python control_rc_car.py
+```
 
 You can now control the car using:
 	•	W = Forward
