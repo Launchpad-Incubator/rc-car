@@ -18,6 +18,8 @@ This project provides a complete system for controlling RC cars over Wi-Fi using
 ---
 
 ## 📦 File Structure
+
+```
 rc-car-control/
 ├── main.py               # Pico W control script
 ├── control_rc_car.py     # Mac/PC keyboard controller
@@ -25,6 +27,7 @@ rc-car-control/
 ├── networkinfo.json      # Pico Wi-Fi credentials
 ├── requirements.txt      # Python dependencies for host control
 └── README.md             # You’re here
+```
 
 ---
 
