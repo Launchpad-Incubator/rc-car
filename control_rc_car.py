@@ -25,6 +25,7 @@ import keyboard
 import requests
 import time
 import json
+import socket
 from typing import Optional
 
 def load_config() -> dict:
@@ -39,8 +40,11 @@ def load_config() -> dict:
 
 cfg = load_config()
 HOSTNAME: str = cfg.get("hostname", "testrc")
-PICO_IP: str = f"http://{HOSTNAME}.local"
+PICO_IP: str = f"http://{HOSTNAME}"
 DEBOUNCE_MS: int = 50
+
+print("Resolving:", HOSTNAME)
+print(socket.gethostbyname(HOSTNAME))
 
 def send_command(command: str) -> None:
     """Sends a command to the RC car's API endpoint over HTTP.

@@ -110,7 +110,6 @@ def connect_wifi(ssid: str, password: str, hostname: str) -> str:
     """
     wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
-    wlan.config(hostname=hostname)
     wlan.connect(ssid, password)
 
     print("Connecting to Wi-Fi...")
