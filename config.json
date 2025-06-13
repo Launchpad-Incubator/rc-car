@@ -1,0 +1,5 @@
+{
+    "hostname": "testrc",
+    "esc_pin": 17,
+    "servo_pin": 16
+}
