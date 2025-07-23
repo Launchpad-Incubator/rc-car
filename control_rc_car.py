@@ -38,7 +38,7 @@ def load_config() -> dict:
 
 cfg = load_config()
 SSID: str = cfg.get("SSID")
-PICO_IP: str = "Put Pico IP from Thonny Console Here"
+PICO_IP: str = "10.10.20.82"
 DEBOUNCE_MS: int = 50
 
 print(socket.gethostbyname(PICO_IP))
@@ -49,7 +49,7 @@ def send_command(command: str) -> None:
     Args:
         command: Query string in the format "cmd=forward&turn=left"
     """
-    url = f"{PICO_IP}/api?{command}"
+    url = f"http://{PICO_IP}/api?{command}"
     try:
         response = requests.get(url, timeout=10)
         print(f"Sent: {command} | Status: {response.status_code}")
