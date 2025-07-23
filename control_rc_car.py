@@ -16,7 +16,7 @@ Keys:
 Configuration File:
 - config.json: contains "hostname" for the target RC car
 
-Author: Kevin Thompson, Aidan McMillan
+Authors: Kevin Thompson, Aidan McMillan
 Date: 2025-07-23
 """
 
