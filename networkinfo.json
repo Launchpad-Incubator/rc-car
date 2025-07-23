@@ -1,4 +1,4 @@
 {
-    "SSID": "YourWiFiNetwork",
-    "PASSWORD": "YourWiFiPassword"
+    "SSID": "IoTnetworkSSID",
+    "PASSWORD": "YourIOTNetworkPassword"
 }

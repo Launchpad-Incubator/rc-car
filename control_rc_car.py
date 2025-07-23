@@ -20,7 +20,6 @@ Author: Kevin Thompson
 Date: 2025-06-13
 """
 
-
 import keyboard
 import requests
 import time
@@ -37,14 +36,12 @@ def load_config() -> dict:
     with open("config.json") as f:
         return json.load(f)
 
-
 cfg = load_config()
-HOSTNAME: str = cfg.get("hostname", "testrc")
-PICO_IP: str = f"http://{HOSTNAME}"
+SSID: str = cfg.get("SSID")
+PICO_IP: str = "Put Pico IP from Thonny Console Here"
 DEBOUNCE_MS: int = 50
 
-print("Resolving:", HOSTNAME)
-print(socket.gethostbyname(HOSTNAME))
+print(socket.gethostbyname(PICO_IP))
 
 def send_command(command: str) -> None:
     """Sends a command to the RC car's API endpoint over HTTP.

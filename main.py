@@ -24,12 +24,13 @@ import socket
 import time
 from machine import Pin, PWM
 import ujson as json
-from typing import Any, Dict
+import _thread
+
 
 
 # ==== CONFIGURATION ====
 
-def load_config(config_filename: str) -> Dict[str, Any]:
+def load_config(config_filename: str) -> dict:
     """Loads a JSON configuration file from the Pico filesystem.
     
     Args:
@@ -97,7 +98,7 @@ class RCCar:
         self.servo.set_pulse(1500)
 
 # ==== Connect to Wi-Fi ====
-def connect_wifi(ssid: str, password: str, hostname: str) -> str:
+def connect_wifi(ssid: str, password: str, hostname: str):
     """Connects to a Wi-Fi network and sets the Pico's mDNS hostname.
     
     Args:
@@ -110,6 +111,7 @@ def connect_wifi(ssid: str, password: str, hostname: str) -> str:
     """
     wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
+    wlan.config(hostname=hostname)
     wlan.connect(ssid, password)
 
     print("Connecting to Wi-Fi...")
@@ -120,7 +122,7 @@ def connect_wifi(ssid: str, password: str, hostname: str) -> str:
     LED.on()
     ip = wlan.ifconfig()[0]
     print(f"Connected. IP address: {ip}")
-    return ip
+    return ip, wlan
 
 
 # ==== Handle Requests ====
@@ -158,10 +160,15 @@ def handle_api_request(request: str, car: RCCar) -> None:
     except Exception as e:
         print("Error parsing request:", e)
 
+
 # ==== Main Entry ====
 def main() -> None:
     """Main entry point: sets up car, connects Wi-Fi, and starts HTTP server."""
-    ip = connect_wifi()
+    print("main() started")
+    print("Calling connect_wifi()...")
+    ip, wlan = connect_wifi(SSID, PASSWORD, HOSTNAME)
+    print("Back from connect_wifi(), starting server...")
+
     esc = PWMOutput(ESC_PIN)
     servo = PWMOutput(SERVO_PIN)
     car = RCCar(esc, servo)
@@ -178,6 +185,8 @@ def main() -> None:
         cl, addr = sock.accept()
         try:
             request = cl.recv(1024).decode()
+            print("Request received:")
+            print(request)
             if 'GET /api?' in request:
                 handle_api_request(request, car)
                 cl.send("HTTP/1.1 204 No Content\r\n\r\n")
