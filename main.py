@@ -97,7 +97,7 @@ class RCCar:
         self.servo.set_pulse(1500)
 
 # ==== Connect to Wi-Fi ====
-def connect_wifi(ssid: str, password: str, hostname: str):
+def connect_wifi(ssid: str, password: str):
     """Connects to a Wi-Fi network.
     
     Args:
