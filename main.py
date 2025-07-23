@@ -47,7 +47,6 @@ cfg = load_config("config.json")
 net_cfg = load_config("networkinfo.json")
 
 # Apply configuration values
-HOSTNAME: str = cfg.get("hostname", "testrc")
 ESC_PIN: int = cfg.get("esc_pin", 16)
 SERVO_PIN: int = cfg.get("servo_pin", 17)
 
@@ -99,19 +98,17 @@ class RCCar:
 
 # ==== Connect to Wi-Fi ====
 def connect_wifi(ssid: str, password: str, hostname: str):
-    """Connects to a Wi-Fi network and sets the Pico's mDNS hostname.
+    """Connects to a Wi-Fi network.
     
     Args:
         ssid: Wi-Fi SSID
         password: Wi-Fi password
-        hostname: Hostname to broadvast via mDNS
     
     Returns:
         IP address as a string
     """
     wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
-    wlan.config(hostname=hostname)
     wlan.connect(ssid, password)
 
     print("Connecting to Wi-Fi...")
@@ -166,7 +163,7 @@ def main() -> None:
     """Main entry point: sets up car, connects Wi-Fi, and starts HTTP server."""
     print("main() started")
     print("Calling connect_wifi()...")
-    ip, wlan = connect_wifi(SSID, PASSWORD, HOSTNAME)
+    ip, wlan = connect_wifi(SSID, PASSWORD)
     print("Back from connect_wifi(), starting server...")
 
     esc = PWMOutput(ESC_PIN)
