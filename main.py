@@ -80,12 +80,13 @@ class RCCar:
         self.servo = servo
         self.stop()
         self.center()
+        self.calibration()
     
     def forward(self) -> None:
-        self.esc.set_pulse(1700)
+        self.esc.set_pulse(1490)
     
     def stop(self) -> None:
-        self.esc.set_pulse(1500)
+        self.esc.set_pulse(1460)
     
     def left(self) -> None:
         self.servo.set_pulse(1200)
@@ -95,6 +96,13 @@ class RCCar:
     
     def center(self) -> None:
         self.servo.set_pulse(1500)
+        
+    def back(self) -> None:
+        self.esc.set_pulse(1440)
+
+    def calibration(self) -> None:
+        self.esc.set_pulse(1000)
+        time.sleep(1)
 
 # ==== Connect to Wi-Fi ====
 def connect_wifi(ssid: str, password: str):
@@ -141,6 +149,8 @@ def handle_api_request(request: str, car: RCCar) -> None:
                     car.forward()
                 elif cmd == 'stop':
                     car.stop()
+                elif cmd == 'back':
+                    car.back()
                 print(f"Drive Command: {cmd}")
             elif p.startswith('turn='):
                 direction = p[5:]
@@ -168,7 +178,7 @@ def main() -> None:
 
     esc = PWMOutput(ESC_PIN)
     servo = PWMOutput(SERVO_PIN)
-    car = RCCar(esc, servo)
+    car = RCCar(esc, servo) # delays for 1 second for calibration
     
     addr = socket.getaddrinfo('0.0.0.0', 80)[0][-1]
     sock = socket.socket()

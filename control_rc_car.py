@@ -38,7 +38,7 @@ def load_config() -> dict:
 
 cfg = load_config()
 SSID: str = cfg.get("SSID")
-PICO_IP: str = "**INSERT PICO IP ADDRESS FROM THONNY CONSOLE HERE"
+PICO_IP: str = "10.10.20.63"
 DEBOUNCE_MS: int = 50
 
 print(socket.gethostbyname(PICO_IP))
@@ -61,7 +61,7 @@ def main() -> None:
     last_command = None
 
     print("Keyboard RC Control Started")
-    print("Hold W = forward, A/D = steer, S = stop")
+    print("Hold W = forward, A/D = steer, S = back")
 
     while True:
         drive_command = 'stop'
@@ -70,7 +70,7 @@ def main() -> None:
         if keyboard.is_pressed('w'):
             drive_command = "forward"
         elif keyboard.is_pressed('s'):
-            drive_command = "stop"
+            drive_command = "back"
         
         if keyboard.is_pressed('a'):
             turn_command = "left"
