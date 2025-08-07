@@ -38,11 +38,7 @@ def load_config() -> dict:
 
 cfg = load_config()
 SSID: str = cfg.get("SSID")
-<<<<<<< Updated upstream
 PICO_IP: str = "192.168.4.1"
-=======
-PICO_IP: str = "10.10.20.63"
->>>>>>> Stashed changes
 DEBOUNCE_MS: int = 50
 
 print(socket.gethostbyname(PICO_IP))
