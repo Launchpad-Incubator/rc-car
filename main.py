@@ -82,11 +82,6 @@ class RCCar:
         self.init_ESC()
         self.stop()
         self.center()
-<<<<<<< Updated upstream
-        
-=======
-        self.calibration()
->>>>>>> Stashed changes
     
     def forward(self) -> None:
         self.esc.set_pulse(1490)
@@ -106,11 +101,7 @@ class RCCar:
     def back(self) -> None:
         self.esc.set_pulse(1440)
 
-<<<<<<< Updated upstream
     def init_ESC(self) -> None:
-=======
-    def calibration(self) -> None:
->>>>>>> Stashed changes
         self.esc.set_pulse(1000)
         time.sleep(1)
 
