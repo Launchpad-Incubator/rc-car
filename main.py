@@ -78,9 +78,10 @@ class RCCar:
     def __init__(self, esc, servo):
         self.esc = esc
         self.servo = servo
+        # Calibration Must Come before other signals to initialize the ESC
+        self.init_ESC()
         self.stop()
         self.center()
-        self.calibration()
     
     def forward(self) -> None:
         self.esc.set_pulse(1490)
@@ -100,7 +101,7 @@ class RCCar:
     def back(self) -> None:
         self.esc.set_pulse(1440)
 
-    def calibration(self) -> None:
+    def init_ESC(self) -> None:
         self.esc.set_pulse(1000)
         time.sleep(1)
 

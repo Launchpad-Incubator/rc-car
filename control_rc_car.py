@@ -38,7 +38,7 @@ def load_config() -> dict:
 
 cfg = load_config()
 SSID: str = cfg.get("SSID")
-PICO_IP: str = "10.10.20.63"
+PICO_IP: str = "192.168.4.1"
 DEBOUNCE_MS: int = 50
 
 print(socket.gethostbyname(PICO_IP))
