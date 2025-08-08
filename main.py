@@ -115,19 +115,16 @@ def connect_wifi(ssid: str, password: str):
     Returns:
         IP address as a string
     """
-    wlan = network.WLAN(network.STA_IF)
-    wlan.active(True)
-    wlan.connect(ssid, password)
-
-    print("Connecting to Wi-Fi...")
-    while not wlan.isconnected():
+    
+    ip = wlan.ifconfig()[0]
+    
+    while wlan.status() != 3: # 3 is the status for AP being active
         LED.toggle()
         time.sleep(0.25)
     
     LED.on()
-    ip = wlan.ifconfig()[0]
-    print(f"Connected. IP address: {ip}")
-    return ip, wlan
+    print(f"Access Point created. IP address: {ip}")
+    return ip
 
 
 # ==== Handle Requests ====
